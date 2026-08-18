@@ -32,6 +32,7 @@ if (!isset($isIndustriesListing)) {
 }
 $isProductPage = $isProductsListing || ($currentProductSlug !== '' && (bool) wf_get_product($currentProductSlug));
 $isIndustryPage = $isIndustriesListing || ($currentIndustrySlug !== '' && (bool) wf_get_industry($currentIndustrySlug));
+$isHome = $currentPage === 'index.php' && !$isIndustriesListing && !$isProductsListing;
 if (!isset($pageDescription)) {
     $pageDescription = 'Expertly forged flanges and specialized products, trusted by diverse industries worldwide since 1944.';
 }

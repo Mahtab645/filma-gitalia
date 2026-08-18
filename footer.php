@@ -1,3 +1,4 @@
+<?php if (!empty($isHome)): ?>
 <section class="cta-invite">
     <div class="container">
         <p class="cta-invite-kicker">Contact</p>
@@ -7,6 +8,7 @@
         </div>
     </div>
 </section>
+<?php endif; ?>
 
 <footer class="site-footer">
     <div class="container">

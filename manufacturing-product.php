@@ -54,7 +54,7 @@ $accordion = $product['accordion'] ?? [];
         <div class="pd-layout">
             <div class="pd-media">
                 <div class="pd-media-frame">
-                    <?php echo $product['icon']; ?>
+                    <img src="<?php echo $h(wf_stock_product_image($product['image'], $baseUrl)); ?>" alt="<?php echo $h($product['title']); ?>">
                 </div>
             </div>
 

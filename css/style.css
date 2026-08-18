@@ -1032,16 +1032,18 @@ a.collection-card:focus h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  aspect-ratio: 4 / 5;
-  background: #f0f0f0;
+  aspect-ratio: 7 / 5;
+  background: #e9e9e9;
   margin-bottom: 18px;
   overflow: hidden;
 }
 
-.collection-card-media svg {
-  width: 78%;
+.collection-card-media svg,
+.collection-card-media img {
+  width: 86%;
   height: auto;
-  max-height: 72%;
+  max-height: 82%;
+  object-fit: contain;
 }
 
 .collection-card h3 {
@@ -5441,7 +5443,7 @@ a.collection-card:focus h3 {
 }
 
 .cert-authorities {
-  background: #f4f4f4;
+  background: #fff;
   padding: 88px 0 96px;
 }
 
@@ -5589,6 +5591,13 @@ a.collection-card:focus h3 {
   padding: 88px 0 96px;
 }
 
+.mfr-tailor-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 56px 64px;
+  align-items: center;
+}
+
 .mfr-tailor-kicker {
   margin: 0 0 16px;
   color: #8a8a8a;
@@ -5600,7 +5609,6 @@ a.collection-card:focus h3 {
 
 .mfr-tailor h2 {
   margin: 0 0 28px;
-  max-width: 860px;
   color: #111;
   font-size: clamp(32px, 4vw, 48px);
   font-weight: 500;
@@ -5616,7 +5624,6 @@ a.collection-card:focus h3 {
 }
 
 .mfr-tailor p {
-  max-width: 760px;
   margin: 0 0 18px;
   color: #3a3a3a;
   font-size: 17px;
@@ -5625,6 +5632,19 @@ a.collection-card:focus h3 {
 
 .mfr-tailor p:last-of-type {
   margin-bottom: 32px;
+}
+
+.mfr-tailor-media {
+  overflow: hidden;
+  background: #ece8e2;
+}
+
+.mfr-tailor-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 460px;
+  object-fit: cover;
 }
 
 .mfr-tailor-btn {
@@ -5663,6 +5683,15 @@ a.collection-card:focus h3 {
   .mfr-tailor {
     padding: 64px 0 72px;
   }
+
+  .mfr-tailor-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .mfr-tailor-media img {
+    min-height: 320px;
+  }
 }
 
 @media (max-width: 767.98px) {
@@ -5691,6 +5720,10 @@ a.collection-card:focus h3 {
   .mfr-tailor p {
     font-size: 15px;
   }
+
+  .mfr-tailor-media img {
+    min-height: 240px;
+  }
 }
 
 .pd-page {
@@ -5715,14 +5748,16 @@ a.collection-card:focus h3 {
   align-items: center;
   justify-content: center;
   aspect-ratio: 1 / 1;
-  background: #f0f0f0;
+  background: #e9e9e9;
   border: 1px solid #e6e6e6;
 }
 
-.pd-media-frame svg {
-  width: 72%;
+.pd-media-frame svg,
+.pd-media-frame img {
+  width: 88%;
   height: auto;
-  max-height: 72%;
+  max-height: 88%;
+  object-fit: contain;
 }
 
 .pd-kicker {
@@ -5787,8 +5822,9 @@ a.collection-card:focus h3 {
 }
 
 .pd-accordion {
-  margin: 0;
-  max-width: 860px;
+  margin: 0 auto;
+  max-width: 760px;
+  text-align: left;
   border-top: 1px solid #e6e6e6;
 }
 
@@ -5996,6 +6032,7 @@ a.collection-card:focus h3 {
 .pd-acc-section {
   background: #fff;
   padding: 88px 0 96px;
+  text-align: center;
 }
 
 .pd-acc-kicker {
@@ -6008,8 +6045,8 @@ a.collection-card:focus h3 {
 }
 
 .pd-acc-heading {
-  margin: 0 0 40px;
-  max-width: 860px;
+  margin: 0 auto 40px;
+  max-width: 760px;
   color: #111;
   font-size: clamp(32px, 4vw, 46px);
   font-weight: 500;

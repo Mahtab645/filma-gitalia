@@ -38,7 +38,7 @@ include __DIR__ . '/header.php';
             ?>
             <a class="collection-card" href="<?php echo $h(wf_stock_product_url($item['slug'], $baseUrl)); ?>">
                 <div class="collection-card-media">
-                    <?php echo $item['icon']; ?>
+                    <img src="<?php echo $h(wf_stock_product_image($item['image'], $baseUrl)); ?>" alt="<?php echo $h($item['title']); ?>">
                 </div>
                 <h3><?php echo $h($item['title']); ?></h3>
                 <ul>

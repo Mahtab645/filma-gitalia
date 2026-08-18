@@ -33,7 +33,7 @@ $products = wf_stock_products();
             <?php foreach ($products as $item): ?>
             <a class="collection-card" href="<?php echo $h(wf_stock_product_url($item['slug'], $baseUrl)); ?>">
                 <div class="collection-card-media">
-                    <?php echo $item['icon']; ?>
+                    <img src="<?php echo $h(wf_stock_product_image($item['image'], $baseUrl)); ?>" alt="<?php echo $h($item['title']); ?>">
                 </div>
                 <h3><?php echo $h($item['title']); ?></h3>
                 <ul>
@@ -49,11 +49,18 @@ $products = wf_stock_products();
 
 <section class="mfr-tailor" id="tailor">
     <div class="container">
-        <p class="mfr-tailor-kicker">Tailor made</p>
-        <h2>Tailor made projects <em>and manufacturing</em></h2>
-        <p>Filmag Italia has been producing special pieces for over 50 years. Our strength is the vastness of products that can be made, in the most disparate solutions. We are able to create individual products in the world, and in the shortest possible time. We manage to work a very wide range of materials, for the creation of projects ranging from the simplest to the most important ones. Our team is prepared to be able to analyze and produce each case in the best way and in good times.</p>
-        <p>Among these we find: bends, tees, reducers, caps, outlets, flanges, pipes and other products that are made on a case by case basis.</p>
-        <a class="mfr-tailor-btn" href="<?php echo $contactHref; ?>">Discover our Tailor Made Projects</a>
+        <div class="mfr-tailor-grid">
+            <div class="mfr-tailor-copy">
+                <p class="mfr-tailor-kicker">Tailor made</p>
+                <h2>Tailor made projects <em>and manufacturing</em></h2>
+                <p>Filmag Italia has been producing special pieces for over 50 years. Our strength is the vastness of products that can be made, in the most disparate solutions. We are able to create individual products in the world, and in the shortest possible time. We manage to work a very wide range of materials, for the creation of projects ranging from the simplest to the most important ones. Our team is prepared to be able to analyze and produce each case in the best way and in good times.</p>
+                <p>Among these we find: bends, tees, reducers, caps, outlets, flanges, pipes and other products that are made on a case by case basis.</p>
+                <a class="mfr-tailor-btn" href="<?php echo $contactHref; ?>">Discover our Tailor Made Projects</a>
+            </div>
+            <div class="mfr-tailor-media">
+                <img src="<?php echo $baseUrl; ?>/images/quality-forge.jpg" alt="Filmag Italia tailor made manufacturing">
+            </div>
+        </div>
     </div>
 </section>
 
