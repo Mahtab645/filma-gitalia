@@ -19,6 +19,13 @@ $references = wf_short_references();
     </div>
 </section>
 
+<section class="ref-intro">
+    <div class="container">
+        <p>Our pipe fittings are used mainly in the chemical, petrochemical and power generation industries. We specialize in applications where high temperature, high pressure and corrosive environments are critical design factors.</p>
+        <p>Our clients include most of the top engineering companies in the world. Filmag Italia is known for its technological solutions, product quality, and customer oriented service.</p>
+    </div>
+</section>
+
 <section class="ref-process">
     <div class="container">
         <p class="ref-process-kicker">Our References</p>

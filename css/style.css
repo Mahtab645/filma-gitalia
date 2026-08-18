@@ -5055,6 +5055,28 @@ body:not(.is-home) .product-hero {
   padding: 80px 0 64px;
 }
 
+.ref-intro {
+  background: #f2f2f2;
+  padding: 72px 24px;
+  text-align: center;
+}
+
+.ref-intro .container {
+  max-width: 860px;
+}
+
+.ref-intro p {
+  margin: 0 0 18px;
+  color: #5a5a5a;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.ref-intro p:last-child {
+  margin-bottom: 0;
+}
+
 .ref-process {
   background: #fff;
   padding: 88px 0 96px;
@@ -5128,6 +5150,14 @@ body:not(.is-home) .product-hero {
 }
 
 @media (max-width: 991.98px) {
+  .ref-intro {
+    padding: 52px 20px;
+  }
+
+  .ref-intro p {
+    font-size: 16px;
+  }
+
   .ref-process {
     padding: 64px 0 72px;
   }
@@ -5836,7 +5866,7 @@ body:not(.is-home) .product-hero {
    ------------------------------------------------------------------------- */
 
 @media (max-width: 991.98px) {
-  section[class]:not(.hero):not(.home-collection):not(.craft-band):not(.trust-cards):not(.cta-invite):not(.about-origin):not(.about-hero):not(.contact-intro):not(.contact-map):not(.ref-process) {
+  section[class]:not(.hero):not(.home-collection):not(.craft-band):not(.trust-cards):not(.cta-invite):not(.about-origin):not(.about-hero):not(.contact-intro):not(.contact-map):not(.ref-process):not(.ref-intro) {
     padding-top: 56px;
     padding-bottom: 56px;
   }
@@ -5870,7 +5900,7 @@ body:not(.is-home) .product-hero {
     font-size: 14px;
   }
 
-  section[class]:not(.hero):not(.home-collection):not(.craft-band):not(.trust-cards):not(.cta-invite):not(.about-origin):not(.about-hero):not(.contact-intro):not(.contact-map):not(.ref-process) {
+  section[class]:not(.hero):not(.home-collection):not(.craft-band):not(.trust-cards):not(.cta-invite):not(.about-origin):not(.about-hero):not(.contact-intro):not(.contact-map):not(.ref-process):not(.ref-intro) {
     padding-top: 36px;
     padding-bottom: 36px;
   }
