@@ -3,9 +3,11 @@ $pageTitle = 'References | Filmag Italia';
 $pageDescription = 'Filmag Italia fittings are used in oil & gas, energy generation, nuclear, chemical, and other critical plants worldwide.';
 $isIndustriesListing = true;
 include dirname(__DIR__) . '/header.php';
+require_once dirname(__DIR__) . '/includes/references.php';
 $h = static function ($value) {
     return htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');
 };
+$industries = array_values(wf_industries());
 ?>
 
 <section class="about-hero">
@@ -17,21 +19,36 @@ $h = static function ($value) {
     </div>
 </section>
 
-<section class="industries-listing">
+<section class="ref-process">
     <div class="container">
-        <div class="industries-listing-intro">
-            <h2>Markets We Serve</h2>
-            <p>Filmag Italia manufactures seamless butt-weld fittings and piping components for demanding industrial applications. These are the markets where our products are specified and installed.</p>
-        </div>
+        <p class="ref-process-kicker">The Markets</p>
+        <h2 class="ref-process-heading"><em>Twelve</em> industries. One standard of quality.</h2>
 
-        <div class="row g-4 industries-card-grid">
-            <?php foreach (wf_industries() as $item): ?>
-            <div class="col-md-6 col-lg-4">
-                <a class="industry-card" href="<?php echo wf_industry_url($item['slug'], $baseUrl); ?>">
-                    <h4><?php echo $h($item['card']); ?></h4>
-                    <p><?php echo $h($item['card_text']); ?></p>
-                </a>
-            </div>
+        <ol class="ref-process-list">
+            <?php foreach ($industries as $index => $item): ?>
+            <li class="ref-process-item">
+                <span class="ref-process-num"><?php echo str_pad((string) ($index + 1), 2, '0', STR_PAD_LEFT); ?></span>
+                <h3 class="ref-process-title">
+                    <a href="<?php echo wf_industry_url($item['slug'], $baseUrl); ?>"><?php echo $h($item['card']); ?></a>
+                </h3>
+                <p class="ref-process-copy"><?php echo $h($item['card_text']); ?></p>
+            </li>
+            <?php endforeach; ?>
+        </ol>
+    </div>
+</section>
+
+<section class="ref-short">
+    <div class="container">
+        <h2 class="ref-short-heading">Short references list</h2>
+        <span class="ref-short-rule" aria-hidden="true"></span>
+
+        <div class="ref-short-grid">
+            <?php foreach (wf_short_references() as $ref): ?>
+            <article class="ref-short-card">
+                <h3><?php echo $h($ref['company']); ?></h3>
+                <p><?php echo $h($ref['project']); ?></p>
+            </article>
             <?php endforeach; ?>
         </div>
     </div>
