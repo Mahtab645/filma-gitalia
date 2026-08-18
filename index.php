@@ -160,7 +160,7 @@ include __DIR__ . '/header.php';
                 </span>
                 <h3>Certifications</h3>
                 <p>The general policy of our organization is to guarantee an exceptionally high quality product. Filmag has brought the recognition and approval of the most important international supervisory authorities. Among these we find TUV, PED, ADW0, ISO9001 and many others.</p>
-                <a class="trust-card-btn" href="<?php echo $baseUrl; ?>/quality-certifications.php">Our Certifications</a>
+                <a class="trust-card-btn" href="<?php echo $baseUrl; ?>/certifications.php">Our Certifications</a>
             </article>
         </div>
     </div>

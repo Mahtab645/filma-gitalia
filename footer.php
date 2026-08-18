@@ -22,7 +22,7 @@
                 <ul class="footer-links">
                     <li><a href="<?php echo $baseUrl; ?>/about.php">Story</a></li>
                     <li><a href="<?php echo $baseUrl; ?>/company-directory.php">Organization</a></li>
-                    <li><a href="<?php echo $baseUrl; ?>/quality-certifications.php">Certifications</a></li>
+                    <li><a href="<?php echo $baseUrl; ?>/certifications.php">Certifications</a></li>
                     <li><a href="<?php echo wf_industries_listing_url($baseUrl); ?>">References</a></li>
                     <li><a href="<?php echo $contactHref; ?>">Contacts</a></li>
                 </ul>

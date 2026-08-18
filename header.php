@@ -111,7 +111,7 @@ $ogLogo = $siteAbs . '/images/logo.png';
                         <a class="nav-link<?php echo $isIndustryPage ? ' active' : ''; ?>" href="<?php echo wf_industries_listing_url($baseUrl); ?>">References</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link<?php echo $currentPage === 'quality-certifications.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/quality-certifications.php">Certifications</a>
+                        <a class="nav-link<?php echo $currentPage === 'certifications.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/certifications.php">Certifications</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link<?php echo $currentPage === 'contact.php' ? ' active' : ''; ?>" href="<?php echo $contactHref; ?>">Contacts</a>
@@ -145,7 +145,7 @@ $ogLogo = $siteAbs . '/images/logo.png';
                 <a class="nav-link<?php echo $isIndustryPage ? ' active' : ''; ?>" href="<?php echo wf_industries_listing_url($baseUrl); ?>">References</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link<?php echo $currentPage === 'quality-certifications.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/quality-certifications.php">Certifications</a>
+                <a class="nav-link<?php echo $currentPage === 'certifications.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/certifications.php">Certifications</a>
             </li>
             <li class="nav-item">
                 <a class="btn-contact" href="<?php echo $contactHref; ?>">Contacts</a>

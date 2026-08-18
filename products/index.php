@@ -110,7 +110,7 @@ $h = static function ($value) {
             <li>CFSI</li>
         </ul>
         <div class="quality-standards-cta">
-            <a class="btn-hero btn-hero-primary" href="<?php echo $baseUrl; ?>/quality-certifications.php">View Certifications</a>
+            <a class="btn-hero btn-hero-primary" href="<?php echo $baseUrl; ?>/certifications.php">View Certifications</a>
         </div>
     </div>
 </section>

@@ -113,7 +113,7 @@ include __DIR__ . '/header.php';
                             </div>
                         </div>
                         <div class="custom-shape-row">
-                            <h3><a href="<?php echo $baseUrl; ?>/quality-certifications.php">Compliance and Certifications</a></h3>
+                            <h3><a href="<?php echo $baseUrl; ?>/certifications.php">Compliance and Certifications</a></h3>
                             <div class="custom-shape-body">
                                 <p><?php echo htmlspecialchars($shapeCerts, ENT_QUOTES, 'UTF-8'); ?></p>
                             </div>
