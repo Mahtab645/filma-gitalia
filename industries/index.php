@@ -7,7 +7,7 @@ require_once dirname(__DIR__) . '/includes/references.php';
 $h = static function ($value) {
     return htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');
 };
-$industries = array_values(wf_industries());
+$references = wf_short_references();
 ?>
 
 <section class="about-hero">
@@ -21,36 +21,18 @@ $industries = array_values(wf_industries());
 
 <section class="ref-process">
     <div class="container">
-        <p class="ref-process-kicker">The Markets</p>
-        <h2 class="ref-process-heading"><em>Twelve</em> industries. One standard of quality.</h2>
+        <p class="ref-process-kicker">Our References</p>
+        <h2 class="ref-process-heading">Clients on <em>critical</em> plants.</h2>
 
         <ol class="ref-process-list">
-            <?php foreach ($industries as $index => $item): ?>
+            <?php foreach ($references as $index => $item): ?>
             <li class="ref-process-item">
                 <span class="ref-process-num"><?php echo str_pad((string) ($index + 1), 2, '0', STR_PAD_LEFT); ?></span>
-                <h3 class="ref-process-title">
-                    <a href="<?php echo wf_industry_url($item['slug'], $baseUrl); ?>"><?php echo $h($item['card']); ?></a>
-                </h3>
-                <p class="ref-process-copy"><?php echo $h($item['card_text']); ?></p>
+                <h3 class="ref-process-title"><?php echo $h($item['company']); ?></h3>
+                <p class="ref-process-copy"><?php echo $h($item['project']); ?></p>
             </li>
             <?php endforeach; ?>
         </ol>
-    </div>
-</section>
-
-<section class="ref-short">
-    <div class="container">
-        <h2 class="ref-short-heading">Short references list</h2>
-        <span class="ref-short-rule" aria-hidden="true"></span>
-
-        <div class="ref-short-grid">
-            <?php foreach (wf_short_references() as $ref): ?>
-            <article class="ref-short-card">
-                <h3><?php echo $h($ref['company']); ?></h3>
-                <p><?php echo $h($ref['project']); ?></p>
-            </article>
-            <?php endforeach; ?>
-        </div>
     </div>
 </section>
 
