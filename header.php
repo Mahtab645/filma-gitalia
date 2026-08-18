@@ -17,8 +17,13 @@ $currentPage = basename($_SERVER['SCRIPT_NAME'] ?? 'index.php');
 $contactHref = $baseUrl . '/contact.php';
 require_once __DIR__ . '/includes/products.php';
 require_once __DIR__ . '/includes/industries.php';
+require_once __DIR__ . '/includes/manufacturing.php';
 $currentProductSlug = wf_request_product_slug();
 $currentIndustrySlug = wf_request_industry_slug();
+$currentStockSlug = wf_request_stock_slug();
+$isManufacturingPage = $currentPage === 'manufacturing.php'
+    || $currentPage === 'manufacturing-product.php'
+    || ($currentStockSlug !== '' && (bool) wf_get_stock_product($currentStockSlug));
 if (!isset($isProductsListing)) {
     $isProductsListing = false;
 }
@@ -95,7 +100,7 @@ $ogLogo = $siteAbs . '/images/logo.png';
                     <a class="nav-link<?php echo $currentPage === 'services.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/services.php">Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link<?php echo $currentPage === 'manufacturing.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/manufacturing.php">Manufacturing</a>
+                    <a class="nav-link<?php echo $isManufacturingPage ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/manufacturing.php">Manufacturing</a>
                 </li>
             </ul>
         </nav>
@@ -139,7 +144,7 @@ $ogLogo = $siteAbs . '/images/logo.png';
                 <a class="nav-link<?php echo $currentPage === 'services.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/services.php">Services</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link<?php echo $currentPage === 'manufacturing.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/manufacturing.php">Manufacturing</a>
+                <a class="nav-link<?php echo $isManufacturingPage ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/manufacturing.php">Manufacturing</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link<?php echo $isIndustryPage ? ' active' : ''; ?>" href="<?php echo wf_industries_listing_url($baseUrl); ?>">References</a>

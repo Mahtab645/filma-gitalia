@@ -20,6 +20,10 @@ function contact_clean($value)
     return trim((string) $value);
 }
 
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' && !empty($_GET['interest'])) {
+    $old['interest'] = contact_clean($_GET['interest']);
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     foreach ($old as $key => $unused) {
         $old[$key] = contact_clean($_POST[$key] ?? '');

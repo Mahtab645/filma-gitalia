@@ -31,7 +31,7 @@ $products = wf_stock_products();
 
         <div class="collection-grid">
             <?php foreach ($products as $item): ?>
-            <article class="collection-card">
+            <a class="collection-card" href="<?php echo $h(wf_stock_product_url($item['slug'], $baseUrl)); ?>">
                 <div class="collection-card-media">
                     <?php echo $item['icon']; ?>
                 </div>
@@ -41,7 +41,7 @@ $products = wf_stock_products();
                     <li><?php echo $h($spec); ?></li>
                     <?php endforeach; ?>
                 </ul>
-            </article>
+            </a>
             <?php endforeach; ?>
         </div>
     </div>
