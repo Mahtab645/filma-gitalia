@@ -30,8 +30,8 @@
             <div class="footer-col">
                 <h3>Manufacturing</h3>
                 <ul class="footer-links">
-                    <li><a href="<?php echo wf_products_listing_url($baseUrl); ?>">Standard Production</a></li>
-                    <li><a href="<?php echo $baseUrl; ?>/custom-forging.php">Tailor Made Production</a></li>
+                    <li><a href="<?php echo $baseUrl; ?>/manufacturing.php">Standard Production</a></li>
+                    <li><a href="<?php echo $baseUrl; ?>/manufacturing.php#tailor">Tailor Made Production</a></li>
                     <li><a href="<?php echo $baseUrl; ?>/services.php">Services</a></li>
                 </ul>
             </div>

@@ -5524,6 +5524,164 @@ body:not(.is-home) .product-hero {
   }
 }
 
+.mfr-intro {
+  background: #f2f2f2;
+  padding: 72px 24px;
+  text-align: center;
+}
+
+.mfr-intro .container {
+  max-width: 860px;
+}
+
+.mfr-intro p {
+  margin: 0;
+  color: #5a5a5a;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.mfr-stock {
+  background: #fff;
+  padding: 88px 0 100px;
+}
+
+.mfr-stock-kicker {
+  margin: 0 0 16px;
+  color: #8a8a8a;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.mfr-stock-heading {
+  margin: 0 0 56px;
+  max-width: 920px;
+  color: #111;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.mfr-stock-heading em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--wf-nav-gold);
+}
+
+.mfr-tailor {
+  background: #f6f3ee;
+  padding: 88px 0 96px;
+}
+
+.mfr-tailor-kicker {
+  margin: 0 0 16px;
+  color: #8a8a8a;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.mfr-tailor h2 {
+  margin: 0 0 28px;
+  max-width: 860px;
+  color: #111;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.mfr-tailor h2 em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--wf-nav-gold);
+}
+
+.mfr-tailor p {
+  max-width: 760px;
+  margin: 0 0 18px;
+  color: #3a3a3a;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.mfr-tailor p:last-of-type {
+  margin-bottom: 32px;
+}
+
+.mfr-tailor-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  min-width: 180px;
+  padding: 14px 28px;
+  background: #111;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid #111;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.mfr-tailor-btn:hover,
+.mfr-tailor-btn:focus {
+  background: transparent;
+  color: #111;
+}
+
+@media (max-width: 991.98px) {
+  .mfr-intro {
+    padding: 56px 20px;
+  }
+
+  .mfr-stock {
+    padding: 64px 0 72px;
+  }
+
+  .mfr-tailor {
+    padding: 64px 0 72px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .mfr-intro {
+    padding: 48px 16px;
+  }
+
+  .mfr-intro p {
+    font-size: 15px;
+  }
+
+  .mfr-stock {
+    padding: 48px 0 56px;
+  }
+
+  .mfr-stock-heading,
+  .mfr-tailor h2 {
+    font-size: 28px !important;
+    margin-bottom: 32px;
+  }
+
+  .mfr-tailor {
+    padding: 48px 0 56px;
+  }
+
+  .mfr-tailor p {
+    font-size: 15px;
+  }
+}
+
 .industries-listing-intro {
   max-width: 920px;
   margin: 0 0 40px;
@@ -6201,7 +6359,7 @@ body:not(.is-home) .product-hero {
    ------------------------------------------------------------------------- */
 
 @media (max-width: 991.98px) {
-  section[class]:not(.hero):not(.home-collection):not(.craft-band):not(.trust-cards):not(.cta-invite):not(.about-origin):not(.about-hero):not(.contact-intro):not(.contact-map):not(.ref-process):not(.ref-intro):not(.cert-reasons):not(.cert-compete):not(.cert-authorities) {
+  section[class]:not(.hero):not(.home-collection):not(.craft-band):not(.trust-cards):not(.cta-invite):not(.about-origin):not(.about-hero):not(.contact-intro):not(.contact-map):not(.ref-process):not(.ref-intro):not(.cert-reasons):not(.cert-compete):not(.cert-authorities):not(.mfr-intro):not(.mfr-stock):not(.mfr-tailor) {
     padding-top: 56px;
     padding-bottom: 56px;
   }
@@ -6235,7 +6393,7 @@ body:not(.is-home) .product-hero {
     font-size: 14px;
   }
 
-  section[class]:not(.hero):not(.home-collection):not(.craft-band):not(.trust-cards):not(.cta-invite):not(.about-origin):not(.about-hero):not(.contact-intro):not(.contact-map):not(.ref-process):not(.ref-intro):not(.cert-reasons):not(.cert-compete):not(.cert-authorities) {
+  section[class]:not(.hero):not(.home-collection):not(.craft-band):not(.trust-cards):not(.cta-invite):not(.about-origin):not(.about-hero):not(.contact-intro):not(.contact-map):not(.ref-process):not(.ref-intro):not(.cert-reasons):not(.cert-compete):not(.cert-authorities):not(.mfr-intro):not(.mfr-stock):not(.mfr-tailor) {
     padding-top: 36px;
     padding-bottom: 36px;
   }

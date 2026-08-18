@@ -95,7 +95,7 @@ $ogLogo = $siteAbs . '/images/logo.png';
                     <a class="nav-link<?php echo $currentPage === 'services.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/services.php">Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link<?php echo $isProductPage ? ' active' : ''; ?>" href="<?php echo wf_products_listing_url($baseUrl); ?>">Manufacturing</a>
+                    <a class="nav-link<?php echo $currentPage === 'manufacturing.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/manufacturing.php">Manufacturing</a>
                 </li>
             </ul>
         </nav>
@@ -139,7 +139,7 @@ $ogLogo = $siteAbs . '/images/logo.png';
                 <a class="nav-link<?php echo $currentPage === 'services.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/services.php">Services</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link<?php echo $isProductPage ? ' active' : ''; ?>" href="<?php echo wf_products_listing_url($baseUrl); ?>">Manufacturing</a>
+                <a class="nav-link<?php echo $currentPage === 'manufacturing.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/manufacturing.php">Manufacturing</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link<?php echo $isIndustryPage ? ' active' : ''; ?>" href="<?php echo wf_industries_listing_url($baseUrl); ?>">References</a>

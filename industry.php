@@ -142,7 +142,7 @@ $h = static function ($value) {
             </div>
             <div class="col-lg-6">
                 <div class="resource-links">
-                    <a href="<?php echo wf_products_listing_url($baseUrl); ?>">View Products <span aria-hidden="true">&rarr;</span></a>
+                    <a href="<?php echo $baseUrl; ?>/manufacturing.php">View Products <span aria-hidden="true">&rarr;</span></a>
                     <a href="<?php echo $baseUrl; ?>/custom-forging.php">See Custom Forging <span aria-hidden="true">&rarr;</span></a>
                     <a href="<?php echo $baseUrl; ?>/certifications.php">Review Certifications <span aria-hidden="true">&rarr;</span></a>
                 </div>

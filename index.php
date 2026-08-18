@@ -26,7 +26,7 @@ include __DIR__ . '/header.php';
     <div class="container">
         <div class="collection-head">
             <h2>Manufacturing <em>Products</em></h2>
-            <a class="collection-more" href="<?php echo wf_products_listing_url($baseUrl); ?>">Explore More</a>
+            <a class="collection-more" href="<?php echo $baseUrl; ?>/manufacturing.php">Explore More</a>
         </div>
 
         <div class="collection-grid">
