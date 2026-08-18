@@ -5324,6 +5324,111 @@ body:not(.is-home) .product-hero {
   }
 }
 
+.cert-compete {
+  background: #f6f3ee;
+  padding: 88px 0 96px;
+}
+
+.cert-compete-kicker {
+  margin: 0 0 16px;
+  color: #8a8a8a;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.cert-compete-heading {
+  margin: 0 0 48px;
+  max-width: 860px;
+  color: #111;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.cert-compete-heading em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--wf-nav-gold);
+}
+
+.cert-compete-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.cert-compete-card {
+  background: #fff;
+  padding: 32px 32px 36px;
+  border-left: 3px solid var(--wf-nav-gold);
+}
+
+.cert-compete-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.cert-compete-icon {
+  display: flex;
+  width: 44px;
+  height: 44px;
+  color: var(--wf-nav-gold);
+}
+
+.cert-compete-icon svg {
+  width: 44px;
+  height: 44px;
+}
+
+.cert-compete-num {
+  font-family: var(--wf-serif);
+  font-style: italic;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--wf-nav-gold);
+}
+
+.cert-compete-card h3 {
+  margin: 0 0 12px;
+  color: #111;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.cert-compete-card p {
+  margin: 0;
+  color: #3a3a3a;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+@media (max-width: 767.98px) {
+  .cert-compete {
+    padding: 56px 0 64px;
+  }
+
+  .cert-compete-heading {
+    font-size: 28px !important;
+    margin-bottom: 32px;
+  }
+
+  .cert-compete-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cert-compete-card h3 {
+    font-size: 20px !important;
+  }
+}
+
 .industries-listing-intro {
   max-width: 920px;
   margin: 0 0 40px;
@@ -6001,7 +6106,7 @@ body:not(.is-home) .product-hero {
    ------------------------------------------------------------------------- */
 
 @media (max-width: 991.98px) {
-  section[class]:not(.hero):not(.home-collection):not(.craft-band):not(.trust-cards):not(.cta-invite):not(.about-origin):not(.about-hero):not(.contact-intro):not(.contact-map):not(.ref-process):not(.ref-intro):not(.cert-reasons) {
+  section[class]:not(.hero):not(.home-collection):not(.craft-band):not(.trust-cards):not(.cta-invite):not(.about-origin):not(.about-hero):not(.contact-intro):not(.contact-map):not(.ref-process):not(.ref-intro):not(.cert-reasons):not(.cert-compete) {
     padding-top: 56px;
     padding-bottom: 56px;
   }
@@ -6035,7 +6140,7 @@ body:not(.is-home) .product-hero {
     font-size: 14px;
   }
 
-  section[class]:not(.hero):not(.home-collection):not(.craft-band):not(.trust-cards):not(.cta-invite):not(.about-origin):not(.about-hero):not(.contact-intro):not(.contact-map):not(.ref-process):not(.ref-intro):not(.cert-reasons) {
+  section[class]:not(.hero):not(.home-collection):not(.craft-band):not(.trust-cards):not(.cta-invite):not(.about-origin):not(.about-hero):not(.contact-intro):not(.contact-map):not(.ref-process):not(.ref-intro):not(.cert-reasons):not(.cert-compete) {
     padding-top: 36px;
     padding-bottom: 36px;
   }
