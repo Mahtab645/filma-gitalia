@@ -92,7 +92,7 @@ $ogLogo = $siteAbs . '/images/logo.png';
                     <a class="nav-link<?php echo $currentPage === 'about.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/about.php">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link<?php echo $currentPage === 'custom-forging.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/custom-forging.php">Services</a>
+                    <a class="nav-link<?php echo $currentPage === 'services.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/services.php">Services</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link<?php echo $isProductPage ? ' active' : ''; ?>" href="<?php echo wf_products_listing_url($baseUrl); ?>">Manufacturing</a>
@@ -136,7 +136,7 @@ $ogLogo = $siteAbs . '/images/logo.png';
                 <a class="nav-link<?php echo $currentPage === 'about.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/about.php">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link<?php echo $currentPage === 'custom-forging.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/custom-forging.php">Services</a>
+                <a class="nav-link<?php echo $currentPage === 'services.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/services.php">Services</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link<?php echo $isProductPage ? ' active' : ''; ?>" href="<?php echo wf_products_listing_url($baseUrl); ?>">Manufacturing</a>

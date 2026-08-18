@@ -147,7 +147,7 @@ include __DIR__ . '/header.php';
                 </span>
                 <h3>Services &amp; Areas</h3>
                 <p>We offer different services based on specific needs for each case. Among these there is emergency delivery, ocean or air freight anywhere in the world, all types of mechanical tests and NDE inspections, calculations and drawings of fittings on a case by case basis.</p>
-                <a class="trust-card-btn" href="<?php echo $baseUrl; ?>/custom-forging.php">Our Services</a>
+                <a class="trust-card-btn" href="<?php echo $baseUrl; ?>/services.php">Our Services</a>
             </article>
             <article class="trust-card">
                 <span class="trust-card-icon" aria-hidden="true">
