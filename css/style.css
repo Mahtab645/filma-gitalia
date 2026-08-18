@@ -6,8 +6,8 @@
   --wf-blue: #7cafd8;
   --wf-white: #ffffff;
   --wf-header-height: 92px;
-  --wf-font: "Roboto", Helvetica, Arial, sans-serif;
-  --wf-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --wf-font: "DM Sans", sans-serif;
+  --wf-serif: "Playfair Display", serif;
   --wf-nav-navy: #242c5f;
   --wf-nav-gold: #c9a36a;
 }
@@ -32,6 +32,22 @@ body {
   background: var(--wf-white);
   overflow-x: hidden;
   max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--wf-serif);
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: var(--wf-font);
 }
 
 img {
@@ -5045,8 +5061,10 @@ body:not(.is-home) .product-hero {
 }
 
 .industries-listing-intro h2 {
-  font-size: 36px;
-  font-weight: 700;
+  font-size: clamp(32px, 3.6vw, 46px);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
   margin: 0 0 18px;
 }
 

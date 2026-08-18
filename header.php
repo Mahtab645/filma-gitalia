@@ -76,9 +76,9 @@ $ogLogo = $siteAbs . '/images/logo.png';
         'email' => 'sales@western-forge.com',
     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?>
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Roboto:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="<?php echo $baseUrl; ?>/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
@@ -88,20 +88,14 @@ $ogLogo = $siteAbs . '/images/logo.png';
     <div class="header-inner">
         <nav class="header-nav header-nav-left" aria-label="Primary">
             <ul class="header-menu">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle<?php echo $isProductPage ? ' active' : ''; ?>" href="<?php echo wf_products_listing_url($baseUrl); ?>" aria-expanded="false">Products</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item dropdown-heading" href="<?php echo wf_products_listing_url($baseUrl); ?>">Products</a></li>
-                        <?php foreach (wf_products() as $navProduct): ?>
-                        <li><a class="dropdown-item<?php echo $currentProductSlug === $navProduct['slug'] ? ' active' : ''; ?>" href="<?php echo wf_product_url($navProduct['slug'], $baseUrl); ?>"><?php echo htmlspecialchars($navProduct['nav'], ENT_QUOTES, 'UTF-8'); ?></a></li>
-                        <?php endforeach; ?>
-                    </ul>
+                <li class="nav-item">
+                    <a class="nav-link<?php echo $currentPage === 'about.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/about.php">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link<?php echo $currentPage === 'custom-forging.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/custom-forging.php">Custom Forging</a>
+                    <a class="nav-link<?php echo $currentPage === 'custom-forging.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/custom-forging.php">Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link<?php echo $currentPage === 'quality-certifications.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/quality-certifications.php">Quality</a>
+                    <a class="nav-link<?php echo $isProductPage ? ' active' : ''; ?>" href="<?php echo wf_products_listing_url($baseUrl); ?>">Manufacturing</a>
                 </li>
             </ul>
         </nav>
@@ -113,26 +107,14 @@ $ogLogo = $siteAbs . '/images/logo.png';
         <div class="header-nav-end">
             <nav class="header-nav header-nav-right" aria-label="Secondary">
                 <ul class="header-menu">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle<?php echo $isIndustryPage ? ' active' : ''; ?>" href="<?php echo wf_industries_listing_url($baseUrl); ?>" aria-expanded="false">Industries</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item dropdown-heading" href="<?php echo wf_industries_listing_url($baseUrl); ?>">Industries Served</a></li>
-                            <?php foreach (wf_industries() as $navIndustry): ?>
-                            <li><a class="dropdown-item<?php echo $currentIndustrySlug === $navIndustry['slug'] ? ' active' : ''; ?>" href="<?php echo wf_industry_url($navIndustry['slug'], $baseUrl); ?>"><?php echo htmlspecialchars($navIndustry['nav'], ENT_QUOTES, 'UTF-8'); ?></a></li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle<?php echo in_array($currentPage, ['about.php', 'careers.php', 'company-directory.php', 'forging-101.php'], true) ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/about.php" aria-expanded="false">About Us</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item dropdown-heading" href="<?php echo $baseUrl; ?>/about.php">About</a></li>
-                            <li><a class="dropdown-item" href="<?php echo $baseUrl; ?>/careers.php">Careers</a></li>
-                            <li><a class="dropdown-item" href="<?php echo $baseUrl; ?>/company-directory.php">Company Directory</a></li>
-                            <li><a class="dropdown-item" href="<?php echo $baseUrl; ?>/forging-101.php">Forging 101</a></li>
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link<?php echo $isIndustryPage ? ' active' : ''; ?>" href="<?php echo wf_industries_listing_url($baseUrl); ?>">References</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link<?php echo $currentPage === 'contact.php' ? ' active' : ''; ?>" href="<?php echo $contactHref; ?>">Contact Us</a>
+                        <a class="nav-link<?php echo $currentPage === 'quality-certifications.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/quality-certifications.php">Certifications</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link<?php echo $currentPage === 'contact.php' ? ' active' : ''; ?>" href="<?php echo $contactHref; ?>">Contacts</a>
                     </li>
                 </ul>
             </nav>
@@ -150,41 +132,23 @@ $ogLogo = $siteAbs . '/images/logo.png';
             </button>
         </div>
         <ul class="header-menu navbar-nav">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle<?php echo $isProductPage ? ' active' : ''; ?>" href="<?php echo wf_products_listing_url($baseUrl); ?>" aria-expanded="false">Products</a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item dropdown-heading" href="<?php echo wf_products_listing_url($baseUrl); ?>">Products</a></li>
-                    <?php foreach (wf_products() as $navProduct): ?>
-                    <li><a class="dropdown-item<?php echo $currentProductSlug === $navProduct['slug'] ? ' active' : ''; ?>" href="<?php echo wf_product_url($navProduct['slug'], $baseUrl); ?>"><?php echo htmlspecialchars($navProduct['nav'], ENT_QUOTES, 'UTF-8'); ?></a></li>
-                    <?php endforeach; ?>
-                </ul>
+            <li class="nav-item">
+                <a class="nav-link<?php echo $currentPage === 'about.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/about.php">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link<?php echo $currentPage === 'custom-forging.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/custom-forging.php">Custom Forging</a>
+                <a class="nav-link<?php echo $currentPage === 'custom-forging.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/custom-forging.php">Services</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link<?php echo $currentPage === 'quality-certifications.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/quality-certifications.php">Quality &amp; Certifications</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle<?php echo $isIndustryPage ? ' active' : ''; ?>" href="<?php echo wf_industries_listing_url($baseUrl); ?>" aria-expanded="false">Industries</a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item dropdown-heading" href="<?php echo wf_industries_listing_url($baseUrl); ?>">Industries Served</a></li>
-                    <?php foreach (wf_industries() as $navIndustry): ?>
-                    <li><a class="dropdown-item<?php echo $currentIndustrySlug === $navIndustry['slug'] ? ' active' : ''; ?>" href="<?php echo wf_industry_url($navIndustry['slug'], $baseUrl); ?>"><?php echo htmlspecialchars($navIndustry['nav'], ENT_QUOTES, 'UTF-8'); ?></a></li>
-                    <?php endforeach; ?>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle<?php echo in_array($currentPage, ['about.php', 'careers.php', 'company-directory.php', 'forging-101.php'], true) ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/about.php" aria-expanded="false">About Us</a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item dropdown-heading" href="<?php echo $baseUrl; ?>/about.php">About</a></li>
-                    <li><a class="dropdown-item" href="<?php echo $baseUrl; ?>/careers.php">Careers</a></li>
-                    <li><a class="dropdown-item" href="<?php echo $baseUrl; ?>/company-directory.php">Company Directory</a></li>
-                    <li><a class="dropdown-item" href="<?php echo $baseUrl; ?>/forging-101.php">Forging 101</a></li>
-                </ul>
+                <a class="nav-link<?php echo $isProductPage ? ' active' : ''; ?>" href="<?php echo wf_products_listing_url($baseUrl); ?>">Manufacturing</a>
             </li>
             <li class="nav-item">
-                <a class="btn-contact" href="<?php echo $contactHref; ?>">Contact Us</a>
+                <a class="nav-link<?php echo $isIndustryPage ? ' active' : ''; ?>" href="<?php echo wf_industries_listing_url($baseUrl); ?>">References</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link<?php echo $currentPage === 'quality-certifications.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/quality-certifications.php">Certifications</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn-contact" href="<?php echo $contactHref; ?>">Contacts</a>
             </li>
         </ul>
     </div>

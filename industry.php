@@ -24,7 +24,7 @@ if (!$industry) {
         <div class="container">
             <h1>Industry not found</h1>
             <p>The industry you requested is not in our list.</p>
-            <a class="btn-view-products" href="<?php echo wf_industries_listing_url($baseUrl); ?>">View Industries</a>
+            <a class="btn-view-products" href="<?php echo wf_industries_listing_url($baseUrl); ?>">View References</a>
         </div>
     </section>
     <?php
@@ -41,17 +41,12 @@ $h = static function ($value) {
 };
 ?>
 
-<section class="industry-hero">
-    <div class="industry-hero-overlay"></div>
-    <div class="container">
-        <div class="industry-hero-copy">
-            <h1><?php echo $h($industry['hero_title']); ?></h1>
-            <p><?php echo $h($industry['hero_subtitle']); ?></p>
-            <div class="industry-hero-actions">
-                <a class="btn-hero btn-hero-primary" href="<?php echo wf_products_listing_url($baseUrl); ?>">Explore Our Products</a>
-                <a class="btn-hero btn-hero-outline" href="<?php echo $baseUrl; ?>/contact.php">Request a Quote</a>
-            </div>
-        </div>
+<section class="about-hero">
+    <div class="about-hero-overlay"></div>
+    <div class="about-hero-content">
+        <h1><?php echo $h($industry['card']); ?></h1>
+        <span class="about-hero-rule" aria-hidden="true"></span>
+        <p><?php echo $h($industry['hero_subtitle']); ?></p>
     </div>
 </section>
 
