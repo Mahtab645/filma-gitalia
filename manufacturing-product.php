@@ -9,10 +9,16 @@ if (!$product) {
     $pageTitle = 'Product Not Found | Filmag Italia';
     include __DIR__ . '/header.php';
     ?>
+    <section class="about-hero">
+        <div class="about-hero-overlay"></div>
+        <div class="about-hero-content">
+            <h1>Product not found</h1>
+            <span class="about-hero-rule" aria-hidden="true"></span>
+            <p>The fitting you requested is not in our standard production list.</p>
+        </div>
+    </section>
     <section class="pd-missing">
         <div class="container">
-            <h1>Product not found</h1>
-            <p>The fitting you requested is not in our standard production list.</p>
             <a class="pd-missing-btn" href="<?php echo $baseUrl; ?>/manufacturing.php">View Manufacturing</a>
         </div>
     </section>
@@ -30,7 +36,18 @@ $h = static function ($value) {
     return htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');
 };
 $enquireUrl = $contactHref . '?interest=' . rawurlencode($product['title']);
+$storyItems = $product['story'] ?? [];
+$accordion = $product['accordion'] ?? [];
 ?>
+
+<section class="about-hero">
+    <div class="about-hero-overlay"></div>
+    <div class="about-hero-content">
+        <h1><?php echo $h($product['title']); ?></h1>
+        <span class="about-hero-rule" aria-hidden="true"></span>
+        <p><?php echo $h($product['category']); ?></p>
+    </div>
+</section>
 
 <section class="pd-page">
     <div class="container">
@@ -43,7 +60,7 @@ $enquireUrl = $contactHref . '?interest=' . rawurlencode($product['title']);
 
             <div class="pd-info">
                 <p class="pd-kicker"><?php echo $h($product['category']); ?></p>
-                <h1><?php echo $h($product['title']); ?></h1>
+                <h2><?php echo $h($product['title']); ?></h2>
                 <p class="pd-sku">SKU: <?php echo $h($product['sku']); ?></p>
                 <p class="pd-lead"><?php echo $h($product['description']); ?></p>
 
@@ -53,22 +70,6 @@ $enquireUrl = $contactHref . '?interest=' . rawurlencode($product['title']);
                     <div class="pd-spec">
                         <span><?php echo $h($row['label']); ?></span>
                         <strong><?php echo $h($row['value']); ?></strong>
-                    </div>
-                    <?php endforeach; ?>
-                </div>
-                <?php endif; ?>
-
-                <?php if (!empty($product['accordion'])): ?>
-                <div class="pd-accordion">
-                    <?php foreach ($product['accordion'] as $index => $item): ?>
-                    <div class="pd-acc-item<?php echo $index === 0 ? ' is-open' : ''; ?>">
-                        <button type="button" class="pd-acc-trigger" aria-expanded="<?php echo $index === 0 ? 'true' : 'false'; ?>">
-                            <?php echo $h($item['title']); ?>
-                            <span class="pd-acc-icon" aria-hidden="true"></span>
-                        </button>
-                        <div class="pd-acc-panel">
-                            <p><?php echo $h($item['copy']); ?></p>
-                        </div>
                     </div>
                     <?php endforeach; ?>
                 </div>
@@ -99,6 +100,42 @@ $enquireUrl = $contactHref . '?interest=' . rawurlencode($product['title']);
         </div>
     </div>
 </section>
+
+<?php if ($storyItems): ?>
+<section class="pd-story">
+    <div class="container">
+        <p class="pd-story-kicker">Inside the piece</p>
+        <h2 class="pd-story-heading">The story behind</h2>
+        <ul class="pd-story-grid">
+            <?php foreach ($storyItems as $item): ?>
+            <li><?php echo $h($item); ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+</section>
+<?php endif; ?>
+
+<?php if ($accordion): ?>
+<section class="pd-acc-section">
+    <div class="container">
+        <p class="pd-acc-kicker">Product details</p>
+        <h2 class="pd-acc-heading">Specifications <em>&amp; documentation</em></h2>
+        <div class="pd-accordion">
+            <?php foreach ($accordion as $index => $item): ?>
+            <div class="pd-acc-item<?php echo $index === 0 ? ' is-open' : ''; ?>">
+                <button type="button" class="pd-acc-trigger" aria-expanded="<?php echo $index === 0 ? 'true' : 'false'; ?>">
+                    <?php echo $h($item['title']); ?>
+                    <span class="pd-acc-icon" aria-hidden="true"></span>
+                </button>
+                <div class="pd-acc-panel">
+                    <p><?php echo $h($item['copy']); ?></p>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
 
 <?php include __DIR__ . '/footer.php'; ?>
 </body>
