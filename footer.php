@@ -51,3 +51,13 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 <script src="<?php echo $baseUrl; ?>/js/custom.js"></script>
+
+<div class="cookie-banner" id="cookieBanner" hidden>
+    <div class="cookie-banner-inner">
+        <p>We use cookies to improve your browsing experience on the Filmag Italia website.</p>
+        <div class="cookie-banner-actions">
+            <button type="button" class="cookie-banner-btn" id="cookieAccept">Accept</button>
+            <button type="button" class="cookie-banner-btn cookie-banner-btn-cancel" id="cookieCancel">Cancel</button>
+        </div>
+    </div>
+</div>

@@ -7,7 +7,7 @@ function wf_industry_url($slug, $baseUrl = '')
 
 function wf_industries_listing_url($baseUrl = '')
 {
-    return rtrim((string) $baseUrl, '/') . '/industries/';
+    return rtrim((string) $baseUrl, '/') . '/references.php';
 }
 
 function wf_request_industry_slug()

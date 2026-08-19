@@ -450,10 +450,27 @@ a {
   .site-header {
     position: fixed;
     z-index: 1050;
+    overflow: visible;
   }
 
-  body.nav-open .site-header {
-    z-index: 1055;
+  body.nav-open .site-header,
+  body.nav-open .site-header.is-scrolled {
+    z-index: 1040;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  body.nav-open .site-header::before {
+    display: none;
+  }
+
+  body.nav-open .header-logo,
+  body.nav-open .navbar-toggler {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
   }
 
   .header-inner {
@@ -525,18 +542,20 @@ a {
     top: 0;
     right: 0;
     bottom: 0;
-    left: auto;
+    left: 0;
     width: 100%;
-    height: 100%;
-    max-height: 100dvh;
-    background: var(--wf-nav-navy);
+    height: 100dvh;
+    max-height: none;
+    background: #111;
     padding: 0 20px 24px;
-    box-shadow: -12px 0 32px rgba(0, 0, 0, 0.22);
-    z-index: 1053;
+    box-shadow: none;
+    z-index: 1060;
     transform: translateX(100%);
     visibility: hidden;
     transition: transform 0.3s ease, visibility 0.3s ease;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   body.nav-open .navbar-collapse {
@@ -564,20 +583,22 @@ a {
   }
 
   .nav-close {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     margin-left: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.55);
     border-radius: 50%;
     background: transparent;
     color: var(--wf-white);
-    font-size: 28px;
-    line-height: 1;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0 0 3px;
+    padding: 0;
     flex: 0 0 auto;
+  }
+
+  .nav-close svg {
+    display: block;
   }
 
   .header-menu {
@@ -756,14 +777,14 @@ a {
   min-height: 100vh;
   min-height: 100dvh;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   overflow: hidden;
   background-color: #111;
   background-image: url("../images/hero.png");
   background-size: cover;
   background-position: center;
-  padding: 0;
+  padding: 0 0 100px;
 }
 
 .hero-media {
@@ -792,9 +813,9 @@ a {
 .hero-title {
   color: var(--wf-white);
   font-family: var(--wf-serif);
-  font-size: clamp(36px, 5.6vw, 72px);
+  font-size: clamp(52px, 7.4vw, 96px);
   font-weight: 500;
-  line-height: 1.18;
+  line-height: 1.12;
   letter-spacing: 0.01em;
   margin: 0 0 36px;
 }
@@ -921,7 +942,7 @@ a {
 
 @media (max-width: 1199.98px) {
   .hero-title {
-    font-size: 52px;
+    font-size: clamp(42px, 6.4vw, 80px);
   }
 }
 
@@ -929,6 +950,7 @@ a {
   .hero {
     min-height: 100vh;
     min-height: 100dvh;
+    padding-bottom: 100px;
   }
 
   .hero-content {
@@ -936,8 +958,8 @@ a {
   }
 
   .hero-title {
-    font-size: 34px;
-    margin-bottom: 28px;
+    font-size: 36px;
+    margin-bottom: 24px;
   }
 
   .hero-scroll {
@@ -1102,7 +1124,7 @@ a.collection-card:focus h3 {
   }
 
   .collection-head h2 {
-    font-size: 28px !important;
+    font-size: 24px !important;
   }
 
   .collection-card-media {
@@ -1462,24 +1484,24 @@ a.collection-card:focus h3 {
 
 @media (max-width: 767.98px) {
   .about-hero {
-    min-height: 360px;
-    padding: calc(var(--wf-header-height) + 32px) 20px 48px;
+    min-height: 260px;
+    padding: calc(var(--wf-header-height) + 20px) 16px 28px;
   }
 
   .about-hero-content h1 {
-    font-size: 32px !important;
+    font-size: 24px !important;
   }
 
   .about-hero-content p {
-    font-size: 15px !important;
+    font-size: 14px !important;
   }
 
   .about-origin-copy h2 {
-    font-size: 28px !important;
+    font-size: 24px !important;
   }
 
   .about-origin-copy p {
-    font-size: 15px !important;
+    font-size: 14px !important;
   }
 
   .about-origin-media img {
@@ -4851,13 +4873,11 @@ a.collection-card:focus h3 {
 }
 
 .cta-invite h2 {
-  max-width: 760px;
-  margin: 0 auto 36px;
-  color: #111;
-  font-family: var(--wf-serif);
-  font-size: clamp(32px, 4.4vw, 52px);
-  font-weight: 500;
-  line-height: 1.18;
+    margin: 0 auto 36px;
+    color: #111;
+    font-size: 80px;
+    font-weight: bold;
+    line-height: 1.18;
 }
 
 .cta-invite-actions {
@@ -4898,7 +4918,7 @@ a.collection-card:focus h3 {
   }
 
   .cta-invite h2 {
-    font-size: 28px !important;
+    font-size: 24px !important;
     margin-bottom: 28px;
   }
 }
@@ -5189,7 +5209,7 @@ a.collection-card:focus h3 {
 
 @media (max-width: 767.98px) {
   .ref-process-heading {
-    font-size: 28px !important;
+    font-size: 24px !important;
     margin-bottom: 36px;
   }
 
@@ -5307,7 +5327,7 @@ a.collection-card:focus h3 {
 
 @media (max-width: 767.98px) {
   .cert-reasons-heading {
-    font-size: 28px !important;
+    font-size: 24px !important;
     margin-bottom: 36px;
   }
 
@@ -5429,7 +5449,7 @@ a.collection-card:focus h3 {
   }
 
   .cert-compete-heading {
-    font-size: 28px !important;
+    font-size: 24px !important;
     margin-bottom: 32px;
   }
 
@@ -5528,7 +5548,7 @@ a.collection-card:focus h3 {
   }
 
   .cert-authorities-heading {
-    font-size: 28px !important;
+    font-size: 24px !important;
   }
 
   .cert-authorities-grid {
@@ -5709,7 +5729,7 @@ a.collection-card:focus h3 {
 
   .mfr-stock-heading,
   .mfr-tailor h2 {
-    font-size: 28px !important;
+    font-size: 24px !important;
     margin-bottom: 32px;
   }
 
@@ -6112,7 +6132,7 @@ a.collection-card:focus h3 {
 
 @media (max-width: 767.98px) {
   .pd-info h2 {
-    font-size: 28px !important;
+    font-size: 24px !important;
   }
 
   .pd-specs {
@@ -6138,7 +6158,7 @@ a.collection-card:focus h3 {
 
   .pd-story-heading,
   .pd-acc-heading {
-    font-size: 28px !important;
+    font-size: 24px !important;
     margin-bottom: 32px;
   }
 
@@ -6828,6 +6848,109 @@ a.collection-card:focus h3 {
   }
 }
 
+.cookie-banner {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  left: 20px;
+  z-index: 4000;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 18px 22px;
+  background: #111;
+  color: #fff;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+}
+
+.cookie-banner[hidden] {
+  display: none !important;
+}
+
+.cookie-banner-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.cookie-banner p {
+  margin: 0;
+  max-width: 760px;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.cookie-banner-actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 10px;
+}
+
+.cookie-banner-btn {
+  flex: 0 0 auto;
+  min-height: 44px;
+  min-width: 120px;
+  padding: 12px 22px;
+  border: 1px solid #fff;
+  background: #fff;
+  color: #111;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.cookie-banner-btn:hover,
+.cookie-banner-btn:focus {
+  background: var(--wf-nav-gold);
+  border-color: var(--wf-nav-gold);
+  color: #111;
+}
+
+.cookie-banner-btn-cancel {
+  background: transparent;
+  color: #fff;
+}
+
+.cookie-banner-btn-cancel:hover,
+.cookie-banner-btn-cancel:focus {
+  background: #fff;
+  border-color: #fff;
+  color: #111;
+}
+
+@media (max-width: 767.98px) {
+  .cookie-banner {
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+    padding: 16px;
+  }
+
+  .cookie-banner-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .cookie-banner p {
+    font-size: 13px !important;
+  }
+
+  .cookie-banner-actions {
+    width: 100%;
+  }
+
+  .cookie-banner-btn {
+    flex: 1 1 0;
+    width: auto;
+  }
+}
+
 /* -------------------------------------------------------------------------
    Global tablet + mobile: tighter type, spacing, and layout
    ------------------------------------------------------------------------- */
@@ -6839,8 +6962,8 @@ a.collection-card:focus h3 {
   }
 
   .hero-title {
-    font-size: clamp(32px, 8vw, 42px) !important;
-    line-height: 1.2;
+    font-size: clamp(40px, 7vw, 64px) !important;
+    line-height: 1.15;
   }
 
   .page-hero-content h1,
@@ -6902,8 +7025,8 @@ a.collection-card:focus h3 {
   }
 
   .hero-title {
-    font-size: clamp(28px, 8vw, 36px) !important;
-    margin-bottom: 24px;
+    font-size: 36px !important;
+    margin-bottom: 20px;
     line-height: 1.2;
   }
 
@@ -6927,9 +7050,21 @@ a.collection-card:focus h3 {
   .product-copy p,
   .forging-quote-card p,
   .forging-benefits-copy p,
-  .about-who-copy p, li {
+  .about-who-copy p,
+  .mfr-intro p,
+  .mfr-tailor p,
+  .pd-lead,
+  .pd-acc-panel p,
+  .ref-intro p,
+  .contact-intro-copy p,
+  .about-origin-copy p,
+  .about-hero-content p,
+  .cert-cell p,
+  .cert-compete-card p,
+  .cert-authorities-lead,
+  li {
     font-size: 14px !important;
-    line-height: 2;
+    line-height: 1.65 !important;
   }
 
   .mobile-nav-title {
@@ -7045,9 +7180,67 @@ a.collection-card:focus h3 {
     align-items: flex-start;
     gap: 8px;
   }
+
+  .home-collection,
+  .trust-cards,
+  .cta-invite,
+  .about-origin,
+  .contact-intro,
+  .contact-page,
+  .ref-process,
+  .ref-intro,
+  .cert-reasons,
+  .cert-compete,
+  .cert-authorities,
+  .mfr-intro,
+  .mfr-stock,
+  .mfr-tailor,
+  .pd-page,
+  .pd-missing,
+  .pd-story,
+  .pd-acc-section {
+    padding-top: 32px !important;
+    padding-bottom: 32px !important;
+  }
+
+  .mfr-intro,
+  .ref-intro {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .about-hero-content h1,
+  .collection-head h2,
+  .about-origin-copy h2,
+  .cta-invite h2,
+  .trust-cards-heading,
+  .contact-intro-copy h2,
+  .ref-process-heading,
+  .cert-reasons-heading,
+  .cert-compete-heading,
+  .cert-authorities-heading,
+  .mfr-stock-heading,
+  .mfr-tailor h2,
+  .pd-info h2,
+  .pd-story-heading,
+  .pd-acc-heading {
+    font-size: 24px !important;
+    line-height: 1.25 !important;
+    margin-bottom: 12px;
+  }
+
+  .pd-spec strong,
+  .pd-story-grid li,
+  .cert-cell h3,
+  .cert-compete-card h3,
+  .trust-card h3,
+  .ref-process-title {
+    font-size: 16px !important;
+  }
+
   section.hero {
-    padding-bottom: 0;
     padding-top: 0;
+    padding-bottom: 100px;
   }
 .btn-hero {
     min-height: 40px;

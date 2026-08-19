@@ -1,7 +1,8 @@
 RewriteEngine On
 
 RewriteRule ^products$ products/ [R=301,L]
-RewriteRule ^industries$ industries/ [R=301,L]
+RewriteRule ^industries$ references.php [R=301,L]
+RewriteRule ^industries/$ references.php [R=301,L]
 RewriteRule ^manufacturing$ manufacturing.php [R=301,L]
 
 RewriteCond %{REQUEST_URI} !/$

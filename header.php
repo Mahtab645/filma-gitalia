@@ -31,7 +31,9 @@ if (!isset($isIndustriesListing)) {
     $isIndustriesListing = false;
 }
 $isProductPage = $isProductsListing || ($currentProductSlug !== '' && (bool) wf_get_product($currentProductSlug));
-$isIndustryPage = $isIndustriesListing || ($currentIndustrySlug !== '' && (bool) wf_get_industry($currentIndustrySlug));
+$isIndustryPage = $isIndustriesListing
+    || $currentPage === 'references.php'
+    || ($currentIndustrySlug !== '' && (bool) wf_get_industry($currentIndustrySlug));
 $isHome = $currentPage === 'index.php' && !$isIndustriesListing && !$isProductsListing;
 if (!isset($pageDescription)) {
     $pageDescription = 'Expertly forged flanges and specialized products, trusted by diverse industries worldwide since 1944.';
@@ -129,34 +131,35 @@ $ogLogo = $siteAbs . '/images/logo.png';
             </button>
         </div>
     </div>
-
-    <div class="navbar-collapse" id="mainNav">
-        <div class="mobile-nav-head">
-            <p class="mobile-nav-title">Menu</p>
-            <button class="nav-close" type="button" id="navClose" aria-label="Close menu">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <ul class="header-menu navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link<?php echo $currentPage === 'about.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/about.php">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link<?php echo $currentPage === 'services.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/services.php">Services</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link<?php echo $isManufacturingPage ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/manufacturing.php">Manufacturing</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link<?php echo $isIndustryPage ? ' active' : ''; ?>" href="<?php echo wf_industries_listing_url($baseUrl); ?>">References</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link<?php echo $currentPage === 'certifications.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/certifications.php">Certifications</a>
-            </li>
-            <li class="nav-item">
-                <a class="btn-contact" href="<?php echo $contactHref; ?>">Contacts</a>
-            </li>
-        </ul>
-    </div>
 </header>
+<div class="navbar-collapse" id="mainNav">
+    <div class="mobile-nav-head">
+        <p class="mobile-nav-title">Menu</p>
+        <button class="nav-close" type="button" id="navClose" aria-label="Close menu">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+        </button>
+    </div>
+    <ul class="header-menu navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link<?php echo $currentPage === 'about.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/about.php">About</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link<?php echo $currentPage === 'services.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/services.php">Services</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link<?php echo $isManufacturingPage ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/manufacturing.php">Manufacturing</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link<?php echo $isIndustryPage ? ' active' : ''; ?>" href="<?php echo wf_industries_listing_url($baseUrl); ?>">References</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link<?php echo $currentPage === 'certifications.php' ? ' active' : ''; ?>" href="<?php echo $baseUrl; ?>/certifications.php">Certifications</a>
+        </li>
+        <li class="nav-item">
+            <a class="btn-contact" href="<?php echo $contactHref; ?>">Contacts</a>
+        </li>
+    </ul>
+</div>
 <div class="nav-backdrop" id="navBackdrop" hidden></div>

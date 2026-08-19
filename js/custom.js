@@ -242,7 +242,41 @@
         initTabSlider('flange-types');
         initMobileNav();
         initContentAccordion();
+        initCookieBanner();
     });
+
+    function initCookieBanner() {
+        var banner = document.getElementById('cookieBanner');
+        var acceptBtn = document.getElementById('cookieAccept');
+        var cancelBtn = document.getElementById('cookieCancel');
+        if (!banner || !acceptBtn || !cancelBtn) return;
+
+        var storageKey = 'filmag_cookie_ok';
+        var dayMs = 24 * 60 * 60 * 1000;
+
+        try {
+            var saved = parseInt(window.localStorage.getItem(storageKey) || '0', 10);
+            if (saved && Date.now() - saved < dayMs) {
+                return;
+            }
+        } catch (err) {
+            /* show the banner if storage is blocked */
+        }
+
+        banner.hidden = false;
+
+        function dismissBanner() {
+            try {
+                window.localStorage.setItem(storageKey, String(Date.now()));
+            } catch (err) {
+                /* ignore */
+            }
+            banner.hidden = true;
+        }
+
+        acceptBtn.addEventListener('click', dismissBanner);
+        cancelBtn.addEventListener('click', dismissBanner);
+    }
 
     function initMobileNav() {
         var nav = document.getElementById('mainNav');
@@ -276,6 +310,7 @@
             document.body.classList.add('nav-open');
             toggle.setAttribute('aria-expanded', 'true');
             if (backdrop) backdrop.hidden = false;
+            nav.scrollTop = 0;
         }
 
         toggle.addEventListener('click', function () {
