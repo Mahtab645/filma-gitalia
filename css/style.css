@@ -480,7 +480,7 @@ a {
     position: relative;
     z-index: 1052;
     padding: 0 16px;
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .header-nav-left,
@@ -495,8 +495,10 @@ a {
   }
 
   .header-logo {
-    padding: 8px 12px;
+    padding: 8px 48px 8px 0;
     grid-column: auto;
+    justify-content: flex-start;
+    margin-right: auto;
   }
 
   .header-logo img {
