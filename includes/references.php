@@ -1,5 +1,73 @@
 <?php
 
+function wf_applications()
+{
+    return [
+        [
+            'title' => 'Potable Water',
+            'copy' => 'Reliable piping solutions for clean and safe water distribution systems.',
+        ],
+        [
+            'title' => 'Fire Protection Systems',
+            'copy' => 'Durable fittings for dependable fire-fighting and sprinkler piping networks.',
+        ],
+        [
+            'title' => 'Compressed Air',
+            'copy' => 'Engineered fittings for efficient and reliable compressed-air systems.',
+        ],
+        [
+            'title' => 'Cooling',
+            'copy' => 'High-quality piping components for industrial and commercial cooling systems.',
+        ],
+        [
+            'title' => 'Heating',
+            'copy' => 'Reliable fittings designed for hot-water and industrial heating applications.',
+        ],
+        [
+            'title' => 'Wastewater',
+            'copy' => 'Durable piping solutions for wastewater treatment and drainage systems.',
+        ],
+        [
+            'title' => 'Natural Gas',
+            'copy' => 'Engineered fittings for safe and reliable gas distribution systems.',
+        ],
+        [
+            'title' => 'Nebulisation Plants',
+            'copy' => 'Precision fittings for high-pressure misting and nebulisation systems.',
+        ],
+        [
+            'title' => 'Steam Plants',
+            'copy' => 'High-performance fittings for demanding steam and thermal applications.',
+        ],
+        [
+            'title' => 'Silicon-Free Systems',
+            'copy' => 'Specialized piping solutions for applications requiring silicon-free conditions.',
+        ],
+        [
+            'title' => 'Solar Thermal',
+            'copy' => 'Reliable fittings for solar heating and thermal-energy systems.',
+        ],
+        [
+            'title' => 'Brackish Water',
+            'copy' => 'Corrosion-resistant piping solutions for challenging brackish-water environments.',
+        ],
+        [
+            'title' => 'Process Water',
+            'copy' => 'Engineered fittings for industrial process-water treatment and distribution systems.',
+        ],
+    ];
+}
+
+function wf_reference_counters()
+{
+    return [
+        ['value' => '½″–48″', 'label' => 'Size Range'],
+        ['value' => '15+', 'label' => 'Material Grades'],
+        ['value' => '100%', 'label' => 'Quality Control'],
+        ['value' => '24/7', 'label' => 'Global Support'],
+    ];
+}
+
 function wf_short_references()
 {
     return [

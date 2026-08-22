@@ -8,6 +8,8 @@ $h = static function ($value) {
     return htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');
 };
 $references = wf_short_references();
+$applications = wf_applications();
+$counters = wf_reference_counters();
 ?>
 
 <section class="about-hero">
@@ -19,6 +21,39 @@ $references = wf_short_references();
     </div>
 </section>
 
+<section class="pd-acc-section ref-apps">
+    <div class="container">
+        <p class="pd-acc-kicker">Applications</p>
+        <h2 class="pd-acc-heading">Systems we <em>serve</em></h2>
+        <div class="pd-accordion">
+            <?php foreach ($applications as $index => $item): ?>
+            <div class="pd-acc-item<?php echo $index === 0 ? ' is-open' : ''; ?>">
+                <button type="button" class="pd-acc-trigger" aria-expanded="<?php echo $index === 0 ? 'true' : 'false'; ?>">
+                    <?php echo $h($item['title']); ?>
+                    <span class="pd-acc-icon" aria-hidden="true"></span>
+                </button>
+                <div class="pd-acc-panel">
+                    <p><?php echo $h($item['copy']); ?></p>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
+<section class="ref-counters">
+    <div class="ref-counters-overlay"></div>
+    <div class="container">
+        <div class="ref-counters-grid">
+            <?php foreach ($counters as $item): ?>
+            <article class="ref-counter">
+                <strong><?php echo $h($item['value']); ?></strong>
+                <span><?php echo $h($item['label']); ?></span>
+            </article>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
 
 <section class="ref-process">
     <div class="container">
