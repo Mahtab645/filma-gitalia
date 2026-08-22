@@ -32,331 +32,250 @@ function wf_get_stock_product($slug)
     return null;
 }
 
-
 function wf_stock_product_image($file, $baseUrl = '')
 {
     return rtrim((string) $baseUrl, '/') . '/images/' . ltrim((string) $file, '/');
 }
 
-function wf_stock_products()
+function wf_related_stock_products($slug, $limit = 3)
 {
-    $materials = 'Hot or cold formed in carbon, austenitic stainless, nickel, and other special alloys in accordance with ASME/ASTM, EN and other international standards. Other materials available on request.';
-    $inspection = 'Rigid conformity tests and NDE inspections are performed for each product and can be certified on request. Emergency delivery and ocean or air freight are available worldwide.';
+    $all = array_values(wf_stock_products());
+    $count = count($all);
+    if ($count < 2) {
+        return [];
+    }
+
+    $index = 0;
+    foreach ($all as $i => $item) {
+        if (($item['slug'] ?? '') === $slug) {
+            $index = $i;
+            break;
+        }
+    }
+
+    $related = [];
+    for ($i = 1; $i < $count && count($related) < $limit; $i++) {
+        $related[] = $all[($index + $i) % $count];
+    }
+
+    return $related;
+}
+
+function wf_fitting_common()
+{
+    return [
+        'category' => 'Butt Weld Fittings',
+        'size' => '½″ – 48″ / Special Sizes on Request',
+        'type' => 'Seamless / Welded',
+        'standard' => 'ASME B16.9',
+        'materials' => 'Stainless Steel / Duplex / Super Duplex / 6Mo / Nickel Alloy / Titanium / Carbon & Alloy Steel.',
+        'wall' => 'SCH 10S – XXS / Special Thickness',
+        'supply' => 'Worldwide',
+        'story' => [
+            'Precision Forming',
+            'Controlled Heat Treatment',
+            'Dimensional Accuracy',
+            'Quality & Traceability',
+        ],
+    ];
+}
+
+function wf_fitting_product(array $item)
+{
+    $common = wf_fitting_common();
+    $size = $item['size'] ?? $common['size'];
+    $type = $item['type'] ?? $common['type'];
+    $standard = $item['standard'] ?? $common['standard'];
+    $materials = $item['materials'] ?? $common['materials'];
+    $wall = $item['wall'] ?? $common['wall'];
+    $supply = $item['supply'] ?? $common['supply'];
+    $detailLabel = $item['detail_label'];
+    $detailValue = $item['detail_value'];
 
     return [
-        [
-            'slug' => 'return-bend',
-            'image' => 'return-bend.jpg',
-            'title' => 'Return Bend',
-            'sku' => 'FG-RB-001',
-            'category' => 'Standard Production',
-            'description' => 'Seamless 180° return bends for heater coils, furnace loops, and process piping where a compact U-turn is required. Produced to ASME and DIN dimensional standards, with short, long, or special radius and any specified wall thickness.',
-            'specs' => [
-                'ASME B16.9, DIN 2605 Teil 1 – Teil 2',
-                'Diameters from 1" to 12" (33.4mm to 323.9mm)',
-                'SR-LR-Special radius',
-                'Any wall thickness',
+        'slug' => $item['slug'],
+        'image' => $item['image'],
+        'title' => $item['title'],
+        'sku' => $item['sku'],
+        'category' => $common['category'],
+        'description' => $item['description'],
+        'page_title' => $item['page_title'],
+        'meta_description' => $item['meta_description'],
+        'specs' => [
+            $standard,
+            $size,
+            $detailValue,
+            $type,
+        ],
+        'highlights' => [
+            ['label' => 'Size Range', 'value' => $size],
+            ['label' => 'Type', 'value' => $type],
+            ['label' => $detailLabel, 'value' => $detailValue],
+            ['label' => 'Standard', 'value' => $standard],
+        ],
+        'accordion' => [
+            [
+                'title' => 'Product Detail',
+                'rows' => [
+                    ['label' => 'Size Range', 'value' => $size],
+                    ['label' => 'Type', 'value' => $type],
+                    ['label' => $detailLabel, 'value' => $detailValue],
+                    ['label' => 'Standard', 'value' => $standard],
+                ],
             ],
-            'highlights' => [
-                ['label' => 'Standard', 'value' => 'ASME B16.9 / DIN 2605'],
-                ['label' => 'Size range', 'value' => '1" – 12"'],
-                ['label' => 'Radius', 'value' => 'SR / LR / Special'],
-                ['label' => 'Wall', 'value' => 'Any thickness'],
+            [
+                'title' => 'Materials',
+                'copy' => $materials,
             ],
-            'accordion' => [
-                ['title' => 'Standards & codes', 'copy' => 'Manufactured to ASME B16.9 and DIN 2605 Teil 1 – Teil 2. Materials and documentation can follow ANSI, ASTM, ASME, and DIN as specified on the order.'],
-                ['title' => 'Dimensions', 'copy' => 'Outside diameters from 1" to 12" (33.4 mm to 323.9 mm). Short radius, long radius, and special radius are available, with any wall thickness required by the piping class.'],
-                ['title' => 'Materials', 'copy' => $materials],
-                ['title' => 'Inspection & delivery', 'copy' => $inspection],
+            [
+                'title' => 'Wall Thickness',
+                'copy' => $wall,
             ],
-            'story' => [
-                '180° compact U-turn',
-                'Heater coils and furnace loops',
-                'Short, long, or special radius',
-                'Seamless construction to ASME B16.9',
+            [
+                'title' => 'Supply',
+                'copy' => $supply,
             ],
         ],
-        [
+        'story' => $common['story'],
+    ];
+}
+
+function wf_stock_products()
+{
+    return [
+        wf_fitting_product([
             'slug' => 'elbow-90',
             'image' => 'elbow90.jpg',
-            'title' => 'Elbow 90°',
-            'sku' => 'FG-E90-002',
-            'category' => 'Standard Production',
-            'description' => 'Butt-weld 90° elbows for direction changes in process, power, and petrochemical lines. Stock range covers 1/2" to 36" with short, long, or special radius and any wall thickness.',
-            'specs' => [
-                'ASME B16.9, DIN 2605 Teil 1 – Teil 2',
-                'Diameters from 1/2" to 36" (26.7mm to 914.4mm)',
-                'SR-LR-Special radius',
-                'Any wall thickness',
-            ],
-            'highlights' => [
-                ['label' => 'Standard', 'value' => 'ASME B16.9 / DIN 2605'],
-                ['label' => 'Size range', 'value' => '1/2" – 36"'],
-                ['label' => 'Radius', 'value' => 'SR / LR / Special'],
-                ['label' => 'Wall', 'value' => 'Any thickness'],
-            ],
-            'accordion' => [
-                ['title' => 'Standards & codes', 'copy' => 'Manufactured to ASME B16.9 and DIN 2605 Teil 1 – Teil 2, with materials to ANSI, ASTM, ASME, and DIN as required.'],
-                ['title' => 'Dimensions', 'copy' => 'Diameters from 1/2" to 36" (26.7 mm to 914.4 mm). Short radius, long radius, and special radius, any wall thickness.'],
-                ['title' => 'Materials', 'copy' => $materials],
-                ['title' => 'Inspection & delivery', 'copy' => $inspection],
-            ],
-            'story' => [
-                '90° direction change',
-                'Process, power, and petrochemical lines',
-                'Short, long, or special radius',
-                'Diameters from 1/2" to 36"',
-            ],
-        ],
-        [
+            'title' => '90° Elbow',
+            'sku' => 'FG-BW-90LR',
+            'detail_label' => 'Radius',
+            'detail_value' => '1.5D Long Radius',
+            'description' => 'Precision-engineered 90° Elbows provide a smooth directional change in piping systems while minimizing turbulence and pressure loss. Manufactured for demanding oil & gas, petrochemical, chemical, power and industrial applications.',
+            'page_title' => '90° Butt Weld Elbow Manufacturer | Filmag Italia',
+            'meta_description' => 'Manufacturer of 90° butt weld elbows from ½″–48″ and special sizes in stainless steel, duplex, super duplex, 6Mo, nickel alloy, titanium and alloy steel.',
+        ]),
+        wf_fitting_product([
             'slug' => 'elbow-45',
             'image' => 'elbow45.jpg',
-            'title' => 'Elbow 45°',
-            'sku' => 'FG-E45-003',
-            'category' => 'Standard Production',
-            'description' => 'Butt-weld 45° elbows used where a gentler change of direction is specified. Same diameter envelope as the 90° range, with SR, LR, or special radius and any wall thickness.',
-            'specs' => [
-                'ASME B16.9, DIN 2605 Teil 1 – Teil 2',
-                'Diameters from 1/2" to 36" (26.7mm to 914.4mm)',
-                'SR-LR-Special radius',
-                'Any wall thickness',
-            ],
-            'highlights' => [
-                ['label' => 'Standard', 'value' => 'ASME B16.9 / DIN 2605'],
-                ['label' => 'Size range', 'value' => '1/2" – 36"'],
-                ['label' => 'Radius', 'value' => 'SR / LR / Special'],
-                ['label' => 'Wall', 'value' => 'Any thickness'],
-            ],
-            'accordion' => [
-                ['title' => 'Standards & codes', 'copy' => 'Manufactured to ASME B16.9 and DIN 2605 Teil 1 – Teil 2 for 45° butt-weld elbows.'],
-                ['title' => 'Dimensions', 'copy' => 'Diameters from 1/2" to 36" (26.7 mm to 914.4 mm). Short radius, long radius, and special radius, any wall thickness.'],
-                ['title' => 'Materials', 'copy' => $materials],
-                ['title' => 'Inspection & delivery', 'copy' => $inspection],
-            ],
-            'story' => [
-                '45° change of direction',
-                'Gentler flow path where specified',
-                'Short, long, or special radius',
-                'Same diameter envelope as 90° elbows',
-            ],
-        ],
-        [
+            'title' => '45° Elbow',
+            'sku' => 'FG-BW-45LR',
+            'detail_label' => 'Radius',
+            'detail_value' => '1.5D Long Radius',
+            'description' => 'Precision-engineered 45° Elbows provide a smooth directional change in piping systems while minimizing turbulence and pressure loss. Manufactured for demanding oil & gas, petrochemical, chemical, power and industrial applications.',
+            'page_title' => '45° Butt Weld Elbow Manufacturer | Filmag Italia',
+            'meta_description' => 'Manufacturer of 45° butt weld elbows for industrial piping systems, available from ½″–48″ and special sizes in a wide range of specialty materials.',
+        ]),
+        wf_fitting_product([
+            'slug' => 'return-bend',
+            'image' => 'return-bend.jpg',
+            'title' => '180° Return Bend',
+            'sku' => 'FG-BW-180RB',
+            'detail_label' => 'Radius',
+            'detail_value' => 'Long Radius / Short Radius',
+            'description' => 'Precision-engineered 180° Return Bends provide a complete reversal of flow direction while maintaining a smooth and reliable transition. Manufactured for demanding oil & gas, petrochemical, chemical, power and industrial applications.',
+            'page_title' => '180° Return Bend Manufacturer | Filmag Italia',
+            'meta_description' => 'Manufacturer of 180° butt weld return bends for demanding piping applications, available in stainless steel, duplex, super duplex, 6Mo, nickel alloy and titanium.',
+        ]),
+        wf_fitting_product([
             'slug' => 'tee',
             'image' => 'tee.jpg',
-            'title' => 'Tee',
-            'sku' => 'FG-TEE-004',
-            'category' => 'Standard Production',
-            'description' => 'Equal and reducing butt-weld tees for branch connections in high-temperature and high-pressure service. Available from 1/2" to 36" with any wall thickness.',
-            'specs' => [
-                'ASME B16.9, DIN 2615 Teil 1 – Teil 2',
-                'Diameters from 1/2" to 36" (26.7mm to 914.4mm)',
-                'Any wall thickness',
-            ],
-            'highlights' => [
-                ['label' => 'Standard', 'value' => 'ASME B16.9 / DIN 2615'],
-                ['label' => 'Size range', 'value' => '1/2" – 36"'],
-                ['label' => 'Type', 'value' => 'Equal / reducing'],
-                ['label' => 'Wall', 'value' => 'Any thickness'],
-            ],
-            'accordion' => [
-                ['title' => 'Standards & codes', 'copy' => 'Manufactured to ASME B16.9 and DIN 2615 Teil 1 – Teil 2 for seamless butt-weld tees.'],
-                ['title' => 'Dimensions', 'copy' => 'Run and branch diameters from 1/2" to 36" (26.7 mm to 914.4 mm), any wall thickness. Equal and reducing tees on request.'],
-                ['title' => 'Materials', 'copy' => $materials],
-                ['title' => 'Inspection & delivery', 'copy' => $inspection],
-            ],
-            'story' => [
-                'Equal and reducing branches',
-                'High-temperature, high-pressure service',
-                'Seamless butt-weld construction',
-                'Run and branch diameters to 36"',
-            ],
-        ],
-        [
+            'title' => 'Equal Tee',
+            'sku' => 'FG-BW-ET',
+            'detail_label' => 'Configuration',
+            'detail_value' => 'Equal Bore / 90° Branch',
+            'description' => 'Precision-engineered Equal Tees provide a reliable 90° branch connection with equal pipe diameters across all three outlets. Manufactured for demanding oil & gas, petrochemical, chemical, power and industrial applications.',
+            'page_title' => 'Equal Tee Manufacturer | Filmag Italia',
+            'meta_description' => 'Manufacturer of butt weld equal tees from ½″–48″ and special sizes for oil & gas, petrochemical, chemical, power and industrial piping applications.',
+        ]),
+        wf_fitting_product([
+            'slug' => 'reducing-tee',
+            'image' => 'tee.jpg',
+            'title' => 'Reducing Tee',
+            'sku' => 'FG-BW-RT',
+            'detail_label' => 'Configuration',
+            'detail_value' => 'Reduced Branch / 90° Branch',
+            'description' => 'Precision-engineered Reducing Tees provide a reliable 90° branch connection between pipes of different diameters, ensuring efficient flow distribution. Manufactured for demanding oil & gas, petrochemical, chemical, power and industrial applications.',
+            'page_title' => 'Reducing Tee Manufacturer | Filmag Italia',
+            'meta_description' => 'Manufacturer of butt weld reducing tees for reliable branch connections, available in stainless steel, duplex, super duplex, 6Mo, nickel alloy and titanium.',
+        ]),
+        wf_fitting_product([
             'slug' => 'concentric-reducer',
             'image' => 'concentric-reducer.jpg',
             'title' => 'Concentric Reducer',
-            'sku' => 'FG-CR-005',
-            'category' => 'Standard Production',
-            'description' => 'Concentric reducers keep the pipe centerline aligned when changing diameter. Used on vertical runs and where even flow around the axis is required, from 1" to 36".',
-            'specs' => [
-                'ASME B16.9, DIN 2616 Teil 1 – Teil 2',
-                'Diameters from 1" to 36" (26.7mm to 914.4mm)',
-                'Any wall thickness',
-            ],
-            'highlights' => [
-                ['label' => 'Standard', 'value' => 'ASME B16.9 / DIN 2616'],
-                ['label' => 'Size range', 'value' => '1" – 36"'],
-                ['label' => 'Type', 'value' => 'Concentric'],
-                ['label' => 'Wall', 'value' => 'Any thickness'],
-            ],
-            'accordion' => [
-                ['title' => 'Standards & codes', 'copy' => 'Manufactured to ASME B16.9 and DIN 2616 Teil 1 – Teil 2.'],
-                ['title' => 'Dimensions', 'copy' => 'Large-end diameters from 1" to 36" (26.7 mm to 914.4 mm), any wall thickness. Reducing dimensions to the specified small end.'],
-                ['title' => 'Materials', 'copy' => $materials],
-                ['title' => 'Inspection & delivery', 'copy' => $inspection],
-            ],
-            'story' => [
-                'Aligned pipe centerline',
-                'Even flow on vertical runs',
-                'Large to small end as specified',
-                'Any required wall thickness',
-            ],
-        ],
-        [
+            'sku' => 'FG-BW-CR',
+            'detail_label' => 'Configuration',
+            'detail_value' => 'Concentric / Common Centerline',
+            'description' => 'Precision-engineered Concentric Reducers connect pipes of different diameters while maintaining a common centerline for smooth and efficient flow transition. Manufactured for demanding oil & gas, petrochemical, chemical, power and industrial applications.',
+            'page_title' => 'Concentric Reducer Manufacturer | Filmag Italia',
+            'meta_description' => 'Manufacturer of butt weld concentric reducers for smooth pipe size transitions, available from ½″–48″ and special sizes in advanced material grades.',
+        ]),
+        wf_fitting_product([
             'slug' => 'eccentric-reducer',
             'image' => 'eccentric-reducer.jpg',
             'title' => 'Eccentric Reducer',
-            'sku' => 'FG-ER-006',
-            'category' => 'Standard Production',
-            'description' => 'Eccentric reducers hold a flat side on the bottom or top of the line to avoid air pockets or drainage issues. Stock sizes from 3/4" to 36" with any wall thickness.',
-            'specs' => [
-                'ASME B16.9, DIN 2616 Teil 1 – Teil 2',
-                'Diameters from 3/4" to 36" (26.7mm to 914.4mm)',
-                'Any wall thickness',
-            ],
-            'highlights' => [
-                ['label' => 'Standard', 'value' => 'ASME B16.9 / DIN 2616'],
-                ['label' => 'Size range', 'value' => '3/4" – 36"'],
-                ['label' => 'Type', 'value' => 'Eccentric'],
-                ['label' => 'Wall', 'value' => 'Any thickness'],
-            ],
-            'accordion' => [
-                ['title' => 'Standards & codes', 'copy' => 'Manufactured to ASME B16.9 and DIN 2616 Teil 1 – Teil 2 for eccentric reducers.'],
-                ['title' => 'Dimensions', 'copy' => 'Diameters from 3/4" to 36" (26.7 mm to 914.4 mm), any wall thickness. Flat-on-bottom or flat-on-top as specified.'],
-                ['title' => 'Materials', 'copy' => $materials],
-                ['title' => 'Inspection & delivery', 'copy' => $inspection],
-            ],
-            'story' => [
-                'Flat-on-bottom or flat-on-top',
-                'Avoids air pockets and drainage issues',
-                'Horizontal line diameter changes',
-                'Any required wall thickness',
-            ],
-        ],
-        [
+            'sku' => 'FG-BW-ER',
+            'detail_label' => 'Configuration',
+            'detail_value' => 'Eccentric / Offset Centerline',
+            'description' => 'Precision-engineered Eccentric Reducers connect pipes of different diameters while maintaining an offset centerline for smooth and controlled flow transition. Manufactured for demanding oil & gas, petrochemical, chemical, power and industrial applications.',
+            'page_title' => 'Eccentric Reducer Manufacturer | Filmag Italia',
+            'meta_description' => 'Manufacturer of butt weld eccentric reducers for industrial piping systems in stainless steel, duplex, super duplex, 6Mo, nickel alloy, titanium and alloy steel.',
+        ]),
+        wf_fitting_product([
             'slug' => 'cap',
             'image' => 'cap.jpg',
-            'title' => 'Cap',
-            'sku' => 'FG-CAP-007',
-            'category' => 'Standard Production',
-            'description' => 'Butt-weld pipe caps close the end of a line or vessel nozzle. Seamless construction from 3/4" to 36" to ASME B16.9 and DIN 2617, any wall thickness.',
-            'specs' => [
-                'ASME B16.9, DIN 2617',
-                'Diameters from 3/4" to 36" (26.7mm to 914.4mm)',
-                'Any wall thickness',
-            ],
-            'highlights' => [
-                ['label' => 'Standard', 'value' => 'ASME B16.9 / DIN 2617'],
-                ['label' => 'Size range', 'value' => '3/4" – 36"'],
-                ['label' => 'Type', 'value' => 'Butt-weld cap'],
-                ['label' => 'Wall', 'value' => 'Any thickness'],
-            ],
-            'accordion' => [
-                ['title' => 'Standards & codes', 'copy' => 'Manufactured to ASME B16.9 and DIN 2617.'],
-                ['title' => 'Dimensions', 'copy' => 'Diameters from 3/4" to 36" (26.7 mm to 914.4 mm), any wall thickness.'],
-                ['title' => 'Materials', 'copy' => $materials],
-                ['title' => 'Inspection & delivery', 'copy' => $inspection],
-            ],
-            'story' => [
-                'Closes line or vessel nozzle ends',
-                'Seamless butt-weld construction',
-                'ASME B16.9 and DIN 2617',
-                'Any required wall thickness',
-            ],
-        ],
-        [
+            'title' => 'Pipe Cap',
+            'sku' => 'FG-BW-CAP',
+            'detail_label' => 'Configuration',
+            'detail_value' => 'Butt Weld End Closure',
+            'description' => 'Precision-engineered Pipe Caps provide a secure and permanent closure at the end of piping systems while maintaining pressure integrity. Manufactured for demanding oil & gas, petrochemical, chemical, power and industrial applications.',
+            'page_title' => 'Butt Weld Pipe Cap Manufacturer | Filmag Italia',
+            'meta_description' => 'Manufacturer of butt weld pipe caps for secure piping system closures, available from ½″–48″ and special sizes for demanding industrial applications.',
+        ]),
+        wf_fitting_product([
             'slug' => 'outlet',
             'image' => 'outlet.jpg',
             'title' => 'Outlet',
-            'sku' => 'FG-OUT-008',
-            'category' => 'Standard Production',
-            'description' => 'Welded outlets for branch connections on headers and process lines. Butt-weld, socket-weld, and threaded ends are available from 3/4" to 36", any rating.',
-            'specs' => [
-                'ASME B31.1, BW-SW-Threaded',
-                'Diameters from 3/4" to 36" (26.7mm to 914.4mm)',
-                'SR-LR-Special radius',
-                'Any rating',
-            ],
-            'highlights' => [
-                ['label' => 'Standard', 'value' => 'ASME B31.1'],
-                ['label' => 'Size range', 'value' => '3/4" – 36"'],
-                ['label' => 'Ends', 'value' => 'BW / SW / Threaded'],
-                ['label' => 'Rating', 'value' => 'Any rating'],
-            ],
-            'accordion' => [
-                ['title' => 'Standards & codes', 'copy' => 'Designed to ASME B31.1. Ends available as butt-weld, socket-weld, or threaded.'],
-                ['title' => 'Dimensions', 'copy' => 'Diameters from 3/4" to 36" (26.7 mm to 914.4 mm). Short radius, long radius, and special radius. Any pressure rating.'],
-                ['title' => 'Materials', 'copy' => $materials],
-                ['title' => 'Inspection & delivery', 'copy' => $inspection],
-            ],
-            'story' => [
-                'Branch connections on headers',
-                'Butt-weld, socket-weld, or threaded',
-                'Any specified pressure rating',
-                'Short, long, or special radius',
-            ],
-        ],
-        [
-            'slug' => 'flange',
-            'image' => 'flange.jpg',
-            'title' => 'Flange',
-            'sku' => 'FG-FLG-009',
-            'category' => 'Standard Production',
-            'description' => 'Flanges for bolted connections on piping and equipment nozzles. ASME B16.5 and DIN 2635–2527 coverage from 1" to 36", any rating.',
-            'specs' => [
-                'ASME B16.5, DIN 2635 – DIN 2527',
-                'Diameters from 1" to 36" (26.7mm to 914.4mm)',
-                'Any rating',
-            ],
-            'highlights' => [
-                ['label' => 'Standard', 'value' => 'ASME B16.5 / DIN'],
-                ['label' => 'Size range', 'value' => '1" – 36"'],
-                ['label' => 'Range', 'value' => 'DIN 2635 – 2527'],
-                ['label' => 'Rating', 'value' => 'Any rating'],
-            ],
-            'accordion' => [
-                ['title' => 'Standards & codes', 'copy' => 'Manufactured to ASME B16.5 and DIN 2635 through DIN 2527.'],
-                ['title' => 'Dimensions', 'copy' => 'Nominal sizes from 1" to 36" (26.7 mm to 914.4 mm), any pressure rating specified on the order.'],
-                ['title' => 'Materials', 'copy' => $materials],
-                ['title' => 'Inspection & delivery', 'copy' => $inspection],
-            ],
-            'story' => [
-                'Bolted piping and nozzle connections',
-                'ASME B16.5 coverage',
-                'DIN 2635 through DIN 2527',
-                'Any specified pressure rating',
-            ],
-        ],
-        [
-            'slug' => 'pipes',
+            'sku' => 'FG-BW-OUT',
+            'detail_label' => 'Configuration',
+            'detail_value' => 'Branch Outlet / Butt Weld Connection',
+            'standard' => 'ASME / MSS / Project Specification',
+            'description' => 'Precision-engineered Butt Weld Outlets provide a strong and reliable branch connection from the main run pipe for efficient flow distribution. Manufactured for demanding oil & gas, petrochemical, chemical, power and industrial applications.',
+            'page_title' => 'Butt Weld Outlet Manufacturer | Filmag Italia',
+            'meta_description' => 'Manufacturer of engineered butt weld outlets for reliable branch connections in oil & gas, petrochemical, chemical, power and industrial piping systems.',
+        ]),
+        wf_fitting_product([
+            'slug' => 'stub-end',
             'image' => 'pipes.jpg',
-            'title' => 'Pipes',
-            'sku' => 'FG-PIP-010',
-            'category' => 'Standard Production',
-            'description' => 'Pipe sections supplied with Filmag fittings for matched material, wall, and documentation. Diameters from 3/4" to 36" with any specified wall thickness.',
-            'specs' => [
-                'ASME B31.10, DIN 2635 – DIN 2527',
-                'Diameters from 3/4" to 36" (26.7mm to 914.4mm)',
-                'Any wall thickness',
-            ],
-            'highlights' => [
-                ['label' => 'Standard', 'value' => 'ASME B31.10 / DIN'],
-                ['label' => 'Size range', 'value' => '3/4" – 36"'],
-                ['label' => 'Range', 'value' => 'DIN 2635 – 2527'],
-                ['label' => 'Wall', 'value' => 'Any thickness'],
-            ],
-            'accordion' => [
-                ['title' => 'Standards & codes', 'copy' => 'Supplied to ASME B31.10 and DIN 2635 through DIN 2527 as specified.'],
-                ['title' => 'Dimensions', 'copy' => 'Diameters from 3/4" to 36" (26.7 mm to 914.4 mm), any wall thickness.'],
-                ['title' => 'Materials', 'copy' => $materials],
-                ['title' => 'Inspection & delivery', 'copy' => $inspection],
-            ],
-            'story' => [
-                'Matched material with Filmag fittings',
-                'Same wall and documentation',
-                'ASME B31.10 supply',
-                'Any specified wall thickness',
-            ],
-        ],
+            'title' => 'Stub End',
+            'sku' => 'FG-BW-SE',
+            'detail_label' => 'Configuration',
+            'detail_value' => 'Long Pattern / Short Pattern',
+            'description' => 'Precision-engineered Stub Ends are designed for use with lap joint flanges, providing a reliable and flexible butt-weld connection in piping systems. Manufactured for demanding oil & gas, petrochemical, chemical, power and industrial applications.',
+            'page_title' => 'Butt Weld Stub End Manufacturer | Filmag Italia',
+            'meta_description' => 'Manufacturer of butt weld stub ends for lap joint flange connections, available in stainless steel, duplex, super duplex, 6Mo, nickel alloy and titanium.',
+        ]),
+        wf_fitting_product([
+            'slug' => 'cross',
+            'image' => 'tee.jpg',
+            'title' => 'Cross',
+            'sku' => 'FG-BW-CROSS',
+            'detail_label' => 'Configuration',
+            'detail_value' => 'Equal Cross / Reducing Cross',
+            'description' => 'Precision-engineered Butt Weld Crosses provide four-way branch connections for efficient distribution or collection of flow within piping systems. Manufactured for demanding oil & gas, petrochemical, chemical, power and industrial applications.',
+            'page_title' => 'Butt Weld Cross Manufacturer | Filmag Italia',
+            'meta_description' => 'Manufacturer of equal and reducing butt weld crosses for industrial piping systems, available from ½″–48″ and in special sizes on request.',
+        ]),
+        wf_fitting_product([
+            'slug' => 'lateral-tee',
+            'image' => 'elbow45.jpg',
+            'title' => 'Lateral Tee',
+            'sku' => 'FG-BW-LT',
+            'detail_label' => 'Configuration',
+            'detail_value' => '45° Lateral / Reducing Lateral',
+            'standard' => 'ASME / MSS / Project Specification',
+            'description' => 'Precision-engineered Lateral Tees provide an angled branch connection from the main pipeline, enabling smooth and efficient flow distribution. Manufactured for demanding oil & gas, petrochemical, chemical, power and industrial applications.',
+            'page_title' => 'Lateral Tee Manufacturer | Filmag Italia',
+            'meta_description' => 'Manufacturer of butt weld lateral tees for engineered branch connections, available in specialty materials and custom sizes for demanding piping applications.',
+        ]),
     ];
 }

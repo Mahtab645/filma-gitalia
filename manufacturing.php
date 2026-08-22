@@ -20,7 +20,7 @@ $products = wf_stock_products();
 
 <section class="mfr-intro">
     <div class="container">
-        <p>The on stock products include: return bends and elbow 90° with sizes (diameter, thickness and radius) and materials in compliance with international standards as, for example, ANSI standards, ASTM international standards, ASME standards (American Society of Mechanical Engineering), DIN standards.</p>
+        <p>Standard production covers seamless and welded butt-weld fittings from ½″ to 48″, with special sizes on request: 90° and 45° elbows, 180° return bends, equal and reducing tees, concentric and eccentric reducers, pipe caps, outlets, stub ends, crosses and lateral tees. Materials include stainless steel, duplex, super duplex, 6Mo, nickel alloy, titanium, carbon and alloy steel, to ASME B16.9 and project specifications.</p>
     </div>
 </section>
 
